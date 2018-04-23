@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Score extends Component {
+class StartButton extends Component {
 
   render(){
     return (
@@ -12,4 +12,4 @@ class Score extends Component {
   };
 }
 
-export default Score;
+export default StartButton;

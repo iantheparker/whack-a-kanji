@@ -1,5 +1,6 @@
-body, html {
-  background-color: #2D4B96;
+body,
+html {
+  background-color: #2d4b96;
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -69,7 +70,7 @@ body, html {
 }
 
 .game__mole {
-  background-image: url(../public/assets/mole.png);
+  /*background-image: url(../public/assets/mole.png); */
   background-size: 50px;
   background-repeat: no-repeat;
   background-position: top;
@@ -84,13 +85,17 @@ body, html {
   height: 100%;
 }
 
-.game__cross {
+.game__cross,
+.game__wavy {
   background-image: url(../public/assets/smash.svg);
   background-repeat: no-repeat;
   background-position: center;
   background-size: 60px;
-  width: 100%;
   height: 100%;
+  weight: 100%;
+}
+.game__wavy {
+  background-image: url(../public/assets/wavy-border.svg);
 }
 
 .game__button-container {
@@ -101,16 +106,16 @@ body, html {
   font-size: 1rem;
   padding: 0.6rem 0.6rem 0.7rem 0.6rem;
   color: white;
-  border: 2px solid #FCB942;
+  border: 2px solid #fcb942;
   background: none;
   border-radius: 5px;
   cursor: pointer;
-  font-family: 'Amaranth', sans-serif;
+  font-family: "Amaranth", sans-serif;
   letter-spacing: 0.13rem;
 }
 
 .game__start-button:hover {
-  border: 2px solid #FFD008;
+  border: 2px solid #ffd008;
 }
 
 .game__start-button:focus {
@@ -140,6 +145,13 @@ body, html {
 
 .no-background {
   background: none;
+}
+
+.hide {
+  display: none;
+}
+.show {
+  display: block;
 }
 
 @media screen and (min-width: 400px) {
