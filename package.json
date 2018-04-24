@@ -1,16 +1,12 @@
 {
-  "name": "whack-a-mole",
+  "name": "whack-a-kanji",
   "version": "0.1.0",
   "private": true,
-  "devDependencies": {
-    "eslint-config-react-tools": "1.x.x",
-    "prop-types": "^15.6.0",
-    "react-scripts": "0.9.5"
-  },
   "dependencies": {
-    "animejs": "^2.0.2",
-    "react": "^15.5.4",
-    "react-dom": "^15.5.4"
+    "animejs": "^2.2.0",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "react-scripts": "1.1.4"
   },
   "scripts": {
     "start": "react-scripts start",

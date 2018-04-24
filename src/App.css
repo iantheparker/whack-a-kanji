@@ -57,7 +57,7 @@ html {
 }
 
 .game__mound {
-  background: url(../public/assets/mole-hole.svg);
+  background: url(./assets/mole-hole.svg);
   background-position: right 5px bottom 0px;
   background-size: 95%;
   background-repeat: no-repeat;
@@ -70,7 +70,7 @@ html {
 }
 
 .game__mole {
-  /*background-image: url(../public/assets/mole.png); */
+  /*background-image: url(./assets/mole.png); */
   background-size: 50px;
   background-repeat: no-repeat;
   background-position: top;
@@ -87,7 +87,7 @@ html {
 
 .game__cross,
 .game__wavy {
-  background-image: url(../public/assets/smash.svg);
+  background-image: url(./assets/smash.svg);
   background-repeat: no-repeat;
   background-position: center;
   background-size: 60px;
@@ -95,7 +95,7 @@ html {
   weight: 100%;
 }
 .game__wavy {
-  background-image: url(../public/assets/wavy-border.svg);
+  background-image: url(./assets/wavy-border.svg);
 }
 
 .game__button-container {
@@ -131,7 +131,7 @@ html {
 }
 
 .game__game-over {
-  background-image: url(../public/assets/wavy-border.svg);
+  background-image: url(./assets/wavy-border.svg);
   background-repeat: no-repeat;
   background-position: center;
   width: 280px;

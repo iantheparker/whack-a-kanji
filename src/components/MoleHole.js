@@ -29,10 +29,10 @@ class MoleHole extends Component {
     }, 500);
   }
   render() {
-    const kanjiPath = `${window.location.origin}/assets/canned/${
+    const kanjiPath = `${window.location.origin}/image/canned/${
       this.props.real ? "real" : "fake"
     }/${("0" + this.props.imgUrl.toString()).slice(-2)}.svg`;
-
+    console.log(kanjiPath);
     return (
       <div
         className="game__hole"
