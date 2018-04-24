@@ -28,7 +28,6 @@ class MoleHole extends Component {
   }
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (prevProps.context[this.props.holeNumber] === "translate(0, 110%)") {
-      console.log(this.props.holeNumber);
     }
   }
   render() {

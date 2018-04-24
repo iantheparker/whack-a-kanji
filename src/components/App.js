@@ -167,7 +167,7 @@ class App extends Component {
             className="game__title"
             style={{ margin: this.state.titleMargin }}
           >
-            WHACK-A-FAKE-KANJI
+            WHACK-A-KANJI
           </h1>
           <GameOver context={this} moles={moleTotal} />
           <div ref={"gameOver"} className="game__button-container">
@@ -181,7 +181,7 @@ class App extends Component {
           <div style={{ margin: 20 }}>
             <p>
               Some of these kanji characters are real. Some of them are faked by
-              a robot. Only whack the fake ones. <br /> <br />
+              a robot. <b>Only whack the fake ones.</b> <br /> <br />
               Special thanks to{" "}
               <a href="http://blog.otoro.net/2015/12/28/recurrent-net-dreams-up-fake-chinese-characters-in-vector-format-with-tensorflow/">
                 David Ha{" "}
