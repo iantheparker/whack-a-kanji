@@ -6,33 +6,36 @@ class MoleHole extends Component {
     this.handleClick = this.handleClick.bind(this);
   }
   handleClick(e) {
-    let target = e.target;
-    console.log(target.parentNode.firstChild);
+    let target = e.target.parentNode.firstChild;
 
     if (this.props.real) {
-      target.parentNode.firstChild.classList.add("game__cross");
-      //target.classList.add("no-background");
-      target.parentNode.firstChild.classList.remove("hide");
-      target.parentNode.firstChild.classList.add("show");
+      target.classList.add("game__cross");
+      target.classList.remove("hide");
+      target.classList.add("show");
+      this.props.addToScore(-1);
     } else {
-      target.parentNode.firstChild.classList.add("game__wavy");
-      //target.classList.add("no-background");
-      target.parentNode.firstChild.classList.remove("hide");
-      target.parentNode.firstChild.classList.add("show");
+      target.classList.add("game__check");
+      target.classList.remove("hide");
+      target.classList.add("show");
+      this.props.addToScore(1);
     }
     window.setTimeout(function() {
-      target.parentNode.firstChild.classList.remove("show");
-      target.parentNode.firstChild.classList.remove("game__wavy");
-      target.parentNode.firstChild.classList.remove("game__cross");
-      //target.parentNode.firstChild.classList.remove("no-background");
-      target.parentNode.firstChild.classList.add("hide");
+      target.classList.remove("show");
+      target.classList.remove("game__check");
+      target.classList.remove("game__cross");
+      target.classList.add("hide");
     }, 500);
+  }
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (prevProps.context[this.props.holeNumber] === "translate(0, 110%)") {
+      console.log(this.props.holeNumber);
+    }
   }
   render() {
     const kanjiPath = `${window.location.origin}/image/canned/${
       this.props.real ? "real" : "fake"
     }/${("0" + this.props.imgUrl.toString()).slice(-2)}.svg`;
-    console.log(kanjiPath);
+
     return (
       <div
         className="game__hole"

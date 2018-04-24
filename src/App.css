@@ -1,18 +1,23 @@
 body,
 html {
-  background-color: #2d4b96;
+  background-color: #fff;
   -webkit-tap-highlight-color: transparent;
 }
 
 .main-container {
   letter-spacing: 0.2rem;
-  color: white;
+  color: black;
   display: -webkit-flex;
   -webkit-align-items: center;
   flex-direction: row;
   justify-content: center;
   flex-wrap: wrap;
   height: 90vh;
+}
+p {
+  font-family: sans-serif;
+  font-size: 13px;
+  letter-spacing: 0;
 }
 
 .game {
@@ -86,16 +91,16 @@ html {
 }
 
 .game__cross,
-.game__wavy {
-  background-image: url(./assets/smash.svg);
+.game__check {
+  background-image: url(./assets/smash_red.svg);
   background-repeat: no-repeat;
   background-position: center;
   background-size: 60px;
   height: 100%;
   weight: 100%;
 }
-.game__wavy {
-  background-image: url(./assets/wavy-border.svg);
+.game__check {
+  background-image: url(./assets/check.svg);
 }
 
 .game__button-container {
@@ -105,7 +110,7 @@ html {
 .game__start-button {
   font-size: 1rem;
   padding: 0.6rem 0.6rem 0.7rem 0.6rem;
-  color: white;
+  color: black;
   border: 2px solid #fcb942;
   background: none;
   border-radius: 5px;

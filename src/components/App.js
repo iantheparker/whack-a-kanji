@@ -92,7 +92,7 @@ class App extends Component {
           this.animate(this.refs.gameOver);
         }, 850);
       }
-    }, 2000);
+    }, moleTotal * 200);
   }
 
   clearMoles() {
@@ -118,23 +118,10 @@ class App extends Component {
     });
   }
 
-  lockOutClick() {
-    window.setTimeout(() => {
-      this.setState({ moleHasBeenWhacked: false });
-    }, 350);
-  }
-
-  addToScore(e) {
-    if (this.state.moleHasBeenWhacked) {
-      return;
-    }
-
-    this.lockOutClick();
-    this.setState({
-      background: "75px",
-      moleHasBeenWhacked: true,
-      score: [parseInt(this.state.score, 10) + 1]
-    });
+  addToScore(num) {
+    this.setState((prevState, props) => ({
+      score: prevState.score + num
+    }));
   }
 
   shakeScreen() {
@@ -156,7 +143,6 @@ class App extends Component {
   }
 
   createMoleHoles() {
-    //console.log("hryyyyyy");
     var holes = [];
     for (let i = 1; i <= moleTotal; i++) {
       holes.push(
@@ -164,6 +150,7 @@ class App extends Component {
           key={i}
           context={this.state}
           holeNumber={i}
+          addToScore={this.addToScore.bind(this)}
           imgUrl={Math.ceil(Math.random() * 20)}
           real={Boolean(Math.round(Math.random() * 1))}
         />
@@ -191,6 +178,22 @@ class App extends Component {
           </div>
           {this.createMoleHoles()}
           <Score context={this.state} />
+          <div style={{ margin: 20 }}>
+            <p>
+              Some of these kanji characters are real. Some of them are faked by
+              a robot. Only whack the fake ones. <br /> <br />
+              Special thanks to{" "}
+              <a href="http://blog.otoro.net/2015/12/28/recurrent-net-dreams-up-fake-chinese-characters-in-vector-format-with-tensorflow/">
+                David Ha{" "}
+              </a>{" "}
+              for his kanji-dreaming AI and to{" "}
+              <a href="https://github.com/RhodesPeter/whack-a-mole-react">
+                {" "}
+                Peter Rhodes
+              </a>{" "}
+              for his fun whack-a-mole game.
+            </p>
+          </div>
         </div>
       </div>
     );
