@@ -8,37 +8,61 @@ class MoleHole extends Component {
     super(props);
     this.handleClick = this.handleClick.bind(this);
 
-    const kanjiPath = `${window.location.origin}/image/canned/${
-      this.props.real ? "real/real_" : "fake/fake_"
-    }${("0000" + this.props.imgUrl.toString()).slice(-4)}.svg`;
+    const real = this.props.real();
+    const imgUrl = this.props.imgUrl();
     this.images = {
       cross: crossimg,
       check: checkimg,
-      kanji: kanjiPath
+      kanji: this.kanjiPath(real, imgUrl)
     };
     this.state = {
       moleHasBeenWhacked: false,
-      img: this.images.kanji
+      show: translations.down,
+      img: this.images.kanji,
+      block: false,
+      real: real,
+      imgUrl: imgUrl
     };
+  }
+  kanjiPath(real, imgUrl) {
+    return `https://s3.amazonaws.com/kanji-ai/${
+      real ? "real/real_" : "fake/fake_"
+    }${("0000" + imgUrl.toString()).slice(-4)}.svg`;
+  }
+  kanjiPathFetchNew() {
+    this.setState({
+      real: this.props.real(),
+      imgUrl: this.props.imgUrl()
+    });
+    const kanjiPath = this.kanjiPath(this.state.real, this.state.imgUrl);
+    // console.log(kanjiPath);
+
+    return kanjiPath;
   }
 
   handleClick(e) {
+    if (this.state.block) {
+      return;
+    }
     this.setState({
       moleHasBeenWhacked: true
     });
-    this.updateScore();
+    this.updateScore(true);
   }
-  updateScore() {
-    if (this.props.real) {
-      this.setState({ img: this.images.cross });
-      this.props.addToScore(0, true);
+  updateScore(tapped) {
+    if (this.state.real) {
+      this.setState({ img: tapped ? this.images.cross : this.images.check });
+      this.props.addToScore(tapped ? 0 : 1);
     } else {
-      this.setState({ img: this.images.check });
-      this.props.addToScore(1, true);
+      this.setState({ img: tapped ? this.images.check : this.images.cross });
+      this.props.addToScore(tapped ? 1 : 0);
     }
 
     window.setTimeout(() => {
-      this.setState({ img: this.images.kanji });
+      this.setState({ show: translations.down });
+      window.setTimeout(() => {
+        this.setState({ img: this.kanjiPathFetchNew(), block: false });
+      }, 500);
     }, 500);
   }
 
@@ -47,12 +71,18 @@ class MoleHole extends Component {
       prevProps.context[this.props.holeNumber] === translations.up &&
       this.props.context[this.props.holeNumber] === translations.down
     ) {
+      this.setState({ block: true });
       if (!this.state.moleHasBeenWhacked) {
-        this.updateScore();
+        this.updateScore(false);
       }
       this.setState({
         moleHasBeenWhacked: false
       });
+    } else if (
+      prevProps.context[this.props.holeNumber] === translations.down &&
+      this.props.context[this.props.holeNumber] === translations.up
+    ) {
+      this.setState({ show: translations.up });
     }
   }
 
@@ -67,7 +97,7 @@ class MoleHole extends Component {
             className={"game__mole"}
             onClick={this.handleClick}
             style={{
-              WebkitTransform: this.props.context[this.props.holeNumber],
+              WebkitTransform: this.state.show,
               backgroundImage: `url(${this.state.img})`
             }}
           />

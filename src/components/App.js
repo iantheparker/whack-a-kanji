@@ -11,9 +11,10 @@ class App extends Component {
   constructor(props, context) {
     super(props, context);
 
-    this.moleTotal = 9;
+    this.moleTotal = 15;
     this.holes = Array.from(Array(9).keys());
     this.timePerMole = 1500;
+    this.imagePool = 1000;
 
     this.state = {
       0: translations.down,
@@ -27,7 +28,6 @@ class App extends Component {
       8: translations.down,
       shake: translations.zero,
       gameHasStarted: false,
-      moleHasBeenWhacked: false,
       score: 0,
       lastHole: "",
       display: "none",
@@ -125,8 +125,7 @@ class App extends Component {
     // const time = this.randTime(1000, 2000);
     this.setState({
       [activeHole]: translations.up,
-      lastHole: [activeHole],
-      moleHasBeenWhacked: false
+      lastHole: [activeHole]
     });
     window.setTimeout(() => {
       this.setState({
@@ -138,11 +137,16 @@ class App extends Component {
     }, this.timePerMole);
   }
 
-  addToScore(num, whacked = false) {
+  addToScore(num = 1) {
     this.setState((prevState, props) => ({
-      score: prevState.score + num,
-      moleHasBeenWhacked: whacked
+      score: prevState.score + num
     }));
+  }
+  randRealOrFake() {
+    return Boolean(Math.round(Math.random() * 1));
+  }
+  randImgUrl() {
+    return Math.floor(Math.random() * this.imagePool);
   }
 
   shakeScreen() {
@@ -169,9 +173,8 @@ class App extends Component {
         context={this.state}
         holeNumber={index}
         addToScore={this.addToScore.bind(this)}
-        onClick={this.addToScore.bind(this)}
-        imgUrl={Math.ceil(Math.random() * 100)}
-        real={Boolean(Math.round(Math.random() * 1))}
+        imgUrl={this.randImgUrl.bind(this)}
+        real={this.randRealOrFake.bind(this)}
       />
     ));
     return <div className="board">{this.holes}</div>;
@@ -209,7 +212,8 @@ class App extends Component {
                 {" "}
                 Peter Rhodes
               </a>{" "}
-              for his fun whack-a-mole game.
+              for his fun whack-a-mole game. Check out my source code{" "}
+              <a href="https://github.com/iantheparker/whack-a-kanji">here</a>.
             </p>
           </div>
         </div>
