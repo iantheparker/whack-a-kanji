@@ -152,13 +152,6 @@ p {
   background: none;
 }
 
-.hide {
-  display: none;
-}
-.show {
-  display: block;
-}
-
 @media screen and (min-width: 400px) {
   .main-container {
     height: 100vh;

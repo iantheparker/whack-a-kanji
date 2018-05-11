@@ -1,54 +1,74 @@
 import React, { Component } from "react";
+import translations from "../utils/translations";
+import crossimg from "../assets/smash_red.svg";
+import checkimg from "../assets/check.svg";
 
 class MoleHole extends Component {
   constructor(props) {
     super(props);
     this.handleClick = this.handleClick.bind(this);
-  }
-  handleClick(e) {
-    let target = e.target.parentNode.firstChild;
 
+    const kanjiPath = `${window.location.origin}/image/canned/${
+      this.props.real ? "real/real_" : "fake/fake_"
+    }${("0000" + this.props.imgUrl.toString()).slice(-4)}.svg`;
+    this.images = {
+      cross: crossimg,
+      check: checkimg,
+      kanji: kanjiPath
+    };
+    this.state = {
+      moleHasBeenWhacked: false,
+      img: this.images.kanji
+    };
+  }
+
+  handleClick(e) {
+    this.setState({
+      moleHasBeenWhacked: true
+    });
+    this.updateScore();
+  }
+  updateScore() {
     if (this.props.real) {
-      target.classList.add("game__cross");
-      target.classList.remove("hide");
-      target.classList.add("show");
-      this.props.addToScore(-1);
+      this.setState({ img: this.images.cross });
+      this.props.addToScore(0, true);
     } else {
-      target.classList.add("game__check");
-      target.classList.remove("hide");
-      target.classList.add("show");
-      this.props.addToScore(1);
+      this.setState({ img: this.images.check });
+      this.props.addToScore(1, true);
     }
-    window.setTimeout(function() {
-      target.classList.remove("show");
-      target.classList.remove("game__check");
-      target.classList.remove("game__cross");
-      target.classList.add("hide");
+
+    window.setTimeout(() => {
+      this.setState({ img: this.images.kanji });
     }, 500);
   }
+
   componentDidUpdate(prevProps, prevState, snapshot) {
-    if (prevProps.context[this.props.holeNumber] === "translate(0, 110%)") {
+    if (
+      prevProps.context[this.props.holeNumber] === translations.up &&
+      this.props.context[this.props.holeNumber] === translations.down
+    ) {
+      if (!this.state.moleHasBeenWhacked) {
+        this.updateScore();
+      }
+      this.setState({
+        moleHasBeenWhacked: false
+      });
     }
   }
-  render() {
-    const kanjiPath = `${window.location.origin}/image/canned/${
-      this.props.real ? "real" : "fake"
-    }/${("0" + this.props.imgUrl.toString()).slice(-2)}.svg`;
 
+  render() {
     return (
       <div
         className="game__hole"
         style={{ display: this.props.context.display }}
       >
         <div className="game__whack">
-          <div className="hide" alt="hit" />
-
           <div
             className={"game__mole"}
             onClick={this.handleClick}
             style={{
               WebkitTransform: this.props.context[this.props.holeNumber],
-              backgroundImage: `url(${kanjiPath})`
+              backgroundImage: `url(${this.state.img})`
             }}
           />
           <div className="game__mound" />

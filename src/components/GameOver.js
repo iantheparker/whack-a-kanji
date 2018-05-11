@@ -9,7 +9,7 @@ class GameOver extends Component {
       >
         <h1 className="game__game-over-header">GAME OVER!</h1>
         <p className="game__you-scored">
-          You scored {this.props.context.state.score}/{this.props.moles - 1}
+          You scored {this.props.context.state.score}/{this.props.moles}
         </p>
       </div>
     );
