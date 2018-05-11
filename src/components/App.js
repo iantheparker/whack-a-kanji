@@ -48,9 +48,9 @@ class App extends Component {
       direction: "alternate",
       loop: true,
       easing: "easeInQuad",
-      duration: 8000,
+      duration: this.timePerMole,
       scale: function(el, i, l) {
-        return l - i + 0.08;
+        return l - i + 0.1;
       }
     });
   }
@@ -201,18 +201,16 @@ class App extends Component {
           <Score context={this.state} />
           <div style={{ margin: 20 }}>
             <p>
-              Some of these kanji characters are real. Some of them are faked by
-              a robot. <b>Only whack the fake ones.</b> <br /> <br />
+              Some of these kanji characters are real. Some are fakes, generated
+              by AI. <b>Only whack the fakes.</b> <br /> <br />
               Special thanks to{" "}
               <a href="http://blog.otoro.net/2015/12/28/recurrent-net-dreams-up-fake-chinese-characters-in-vector-format-with-tensorflow/">
                 David Ha{" "}
               </a>{" "}
-              for his kanji-dreaming AI and to{" "}
-              <a href="https://github.com/RhodesPeter/whack-a-mole-react">
-                {" "}
-                Peter Rhodes
-              </a>{" "}
-              for his fun whack-a-mole game. Check out my source code{" "}
+              for his kanji-dreaming AI made with{" "}
+              <a href="https://github.com/tensorflow/magenta/tree/master/magenta/models/sketch_rnn">
+                sketchRNN
+              </a>. Check out my source code{" "}
               <a href="https://github.com/iantheparker/whack-a-kanji">here</a>.
             </p>
           </div>
