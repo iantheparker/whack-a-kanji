@@ -6,6 +6,7 @@ import GameOver from "./GameOver.js";
 import StartButton from "./StartButton.js";
 import MoleHole from "./MoleHole.js";
 import translations from "../utils/translations";
+import ReactGA from "react-ga";
 
 class App extends Component {
   constructor(props, context) {
@@ -178,6 +179,10 @@ class App extends Component {
       />
     ));
     return <div className="board">{this.holes}</div>;
+  }
+  componentDidMount() {
+    ReactGA.initialize("UA-119144450-1");
+    ReactGA.pageview(window.location.pathname + window.location.search);
   }
 
   render() {
