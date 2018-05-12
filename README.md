@@ -1,8 +1,8 @@
-# Whack-A-Kanji
+# Whack-a-Kanji
 
 ![Gameplay](https://raw.githubusercontent.com/iantheparker/whack-a-kanji/master/public/still.jpg)
 
-Whack-A-Kanji is a little game for advanced kanji learners.
+Whack-a-Kanji is a little game for advanced kanji learners.
 You can whack a kanji [here](https://whack-a-kanji.netlify.com/).
 This is forked from [@RhodesPeter's whack-a-mole-react](https://github.com/RhodesPeter/whack-a-mole-react) and filled with fake AI-generated kanji from [@hardmaru's sketchRNN](https://github.com/hardmaru/sketch-rnn) and real kanji from [KanjiVG](http://kanjivg.tagaini.net/).
 
