@@ -219,8 +219,7 @@ class App extends Component {
               for his kanji-dreaming{" "}
               <a href="https://github.com/tensorflow/magenta/blob/master/magenta/models/sketch_rnn/README.md">
                 SketchRNN
-              </a>{" "}
-              AI. Check out the Whack-a-Kanji source code{" "}
+              </a>. Check out the Whack-a-Kanji source code{" "}
               <a href="https://github.com/iantheparker/whack-a-kanji">here</a>.
             </p>
           </div>
