@@ -14,7 +14,7 @@ class App extends Component {
 
     this.moleTotal = 15;
     this.holes = Array.from(Array(9).keys());
-    this.timePerMole = 1500;
+    this.timePerMole = 1000;
     this.imagePool = 1000;
 
     this.state = {
